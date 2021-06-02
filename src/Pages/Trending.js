@@ -6,7 +6,6 @@ import SingleContent from "../components/SingleContent";
 function Trending() {
   const [page, setPage] = useState(1);
   const [content, setContent] = useState([]);
-  console.log(process.env);
   const fetchTrending = async () => {
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_API_KEY}& page=${page}`
@@ -21,8 +20,8 @@ function Trending() {
   return (
     <div>
       <div className="container text-center">
-          <h2  className="text-center m-3">Trending</h2>
-     
+        <h2 className="text-center m-3">Trending</h2>
+
         <div>
           <div className="row">
             {content &&
