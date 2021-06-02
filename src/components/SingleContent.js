@@ -1,7 +1,7 @@
+import { Badge } from "@material-ui/core";
 import React from "react";
 import { img_300, unavailable } from "../config";
 function SingleContent({
-  key,
   id,
   poster,
   title,
@@ -11,18 +11,17 @@ function SingleContent({
 }) {
   return (
     <React.Fragment>
-      <div className="container">
-        <div className="row">
-          <div className="col-md">
-            <img
-              src={poster ? `${img_300}/${poster}` : unavailable}
-              alt={title}
-            />
-            <b>{title}</b>
-            <span>{media_type === "tv" ? "TV Series" : "Movie"}</span>
-            <span>{date}</span>
-          </div>
-        </div>
+      <div className="col-md-4 text-center">
+        <Badge
+          badgeContent={vote_average}
+          color={vote_average > 6 ? "primary" : "secondary"}
+        />
+        <img src={poster ? `${img_300}/${poster}` : unavailable} alt={title} />
+        <br/>
+        <b>{title}</b>
+        <br />
+        <span>{media_type === "tv" ? "TV Series" : "Movie"}</span>
+        <span>{date}</span>
       </div>
     </React.Fragment>
   );
