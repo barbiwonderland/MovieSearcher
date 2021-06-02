@@ -16,7 +16,7 @@ function SingleContent({
           badgeContent={vote_average}
           color={vote_average > 6 ? "primary" : "secondary"}
         />
-        <img className="mt-2" src={poster ? `${img_300}/${poster}` : unavailable} alt={title} />
+        <img className="mt-2" src={poster ? `${img_300}/${poster}` : `${unavailable}`} alt={title} />
         <br/>
         <b>{title}</b>
         <br />
