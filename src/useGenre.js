@@ -1,7 +1,9 @@
-const useGenres=(selectedGenres)=>{
-if(selectedGenres.lenghth<1)return ("");
+const useGenres = (selectedGenres) => {
+    if (selectedGenres.length < 1) return "";
+  
+    const GenreIds = selectedGenres.map((g) => g.id);
+    return GenreIds.reduce((acc, curr) => acc + "," + curr);
+  };
+  
+  export default useGenres;
 
-const GenreIds =selectedGenres.map((g)=>g.id)
-return GenreIds.reduce((acc,curr)=>acc+","+curr)
-};
-export default useGenres;

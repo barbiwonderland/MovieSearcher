@@ -1,29 +1,28 @@
 import { Chip } from "@material-ui/core";
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
-function Genres({
-  type,
+const Genres = ({
   selectedGenres,
   setSelectedGenres,
   genres,
   setGenres,
+  type,
   setPage,
+}) => {
+  const handleAdd = (genre) => {
+    setSelectedGenres([...selectedGenres, genre]);
+    setGenres(genres.filter((g) => g.id !== genre.id));
+    setPage(1);
+  };
 
-}) {
-   const handleAdd = (genre) => {
-     setSelectedGenres([...selectedGenres, genre]);
-     setGenres(genres.filter((g) => g.id !== genre.id));
-     setPage(1);
-   };
-const handleRemove = (genre) => {
+  const handleRemove = (genre) => {
     setSelectedGenres(
       selectedGenres.filter((selected) => selected.id !== genre.id)
     );
     setGenres([...genres, genre]);
     setPage(1);
   };
-  console.log(genres,selectedGenres)
 
   const fetchGenres = async () => {
     const { data } = await axios.get(
@@ -34,15 +33,16 @@ const handleRemove = (genre) => {
 
   useEffect(() => {
     fetchGenres();
+
     return () => {
-      setGenres({});//unmounting
+      setGenres({}); // unmounting
     };
+    // eslint-disable-next-line
   }, []);
+
   return (
-    <React.Fragment>
-      <div className="container">
-        <div className="row">
-        {selectedGenres.map((genre) => (
+    <div style={{ padding: "6px 0" }}>
+      {selectedGenres.map((genre) => (
         <Chip
           style={{ margin: 2 }}
           label={genre.name}
@@ -50,21 +50,22 @@ const handleRemove = (genre) => {
           color="primary"
           clickable
           size="small"
-          onDelete={() => handleRemove(genre) }
+          onDelete={() => handleRemove(genre)}
         />
       ))}
-          {genres.map((genre) => (
-              <Chip
-                label={genre.name}
-                key={genre.id}
-                className="m-1"
-                clickable
-                onclick={()=>handleAdd(genre)}
-              />
-            ))}
-        </div>
-      </div>
-    </React.Fragment>
+      {genres &&
+        genres.map((genre) => (
+          <Chip
+            style={{ margin: 2 }}
+            label={genre.name}
+            key={genre.id}
+            clickable
+            size="small"
+            onClick={() => handleAdd(genre)}
+          />
+        ))}
+    </div>
   );
-}
+};
+
 export default Genres;

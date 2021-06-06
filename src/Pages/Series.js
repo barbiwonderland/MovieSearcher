@@ -2,7 +2,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import CustomPagination from "../components/customPagination";
 import Genres from "../components/Genres";
+import Loading from "../components/Loading";
 import SingleContent from "../components/SingleContent";
+import useGenres from "../useGenre";
 
 function Series() {
   const [genres, setGenres] = useState([]);
@@ -10,11 +12,12 @@ function Series() {
   const [content, setContent] = useState([]);
   const [numbOfPages, setNumbOfPages] = useState();
   const [selectedGenres, setSelectedGenres] = useState([]);
-  // const genreForUrls =useGenres(selectedGenres)
+  const [loading, setLoading] = useState(false);
+const genreForUrls =useGenres(selectedGenres)
 
   const fectchMovies = async () => {
     const { data } = await axios.get(
-      `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}`
+      `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${genreForUrls}`
       // &with_genres=${genreForUrls}
     );
     setContent(data.results);
@@ -23,7 +26,10 @@ function Series() {
   useEffect(() => {
     // console.log(selectedGenres,"hola");
     fectchMovies();
-  }, [page]);
+  }, [page,genreForUrls]);
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <React.Fragment>
       <div className="container text-center">

@@ -11,11 +11,11 @@ function Movies() {
   const [content, setContent] = useState([]);
   const [numbOfPages, setNumbOfPages] = useState();
   const [selectedGenres, setSelectedGenres] = useState([]);
-  // const genreForUrls =useGenres(selectedGenres)
+  const genreForUrls =useGenres(selectedGenres)
 
   const fectchMovies = async () => {
     const { data } = await axios.get(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}`
+      `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${genreForUrls}`
       // &with_genres=${genreForUrls}
     );
     setContent(data.results);
@@ -24,7 +24,7 @@ function Movies() {
   useEffect(() => {
     // console.log(selectedGenres,"hola");
     fectchMovies();
-  }, [page]);
+  }, [page,genreForUrls]);
   return (
     <React.Fragment>
       <div className="container text-center">

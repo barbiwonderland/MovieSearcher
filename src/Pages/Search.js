@@ -78,7 +78,7 @@ function Search() {
             </div>
           </div>
           {searchText &&
-            content !== 1 &&
+            !content &&
             (type ? (
               <div className="text-center">
                 <h2>No series Found</h2>
