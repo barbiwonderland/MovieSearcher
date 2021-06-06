@@ -18,10 +18,11 @@ code {
   margin: auto;
   justify-content: center;
 }
-
+/* Boton Modal */
 .BotonCard{
   background-color: transparent!important;
 }
+/* Fuente titulos */
 .FuenteCinema{
   font-family: 'Limelight', cursive;
   font-size: 3rem;
