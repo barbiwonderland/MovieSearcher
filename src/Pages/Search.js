@@ -1,20 +1,21 @@
 import { Tab, Tabs, TextField } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import SearchIcon from "@material-ui/icons/Search";
+import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
 import axios from "axios";
 import SingleContent from "../components/SingleContent";
 import CustomPagination from "../components/customPagination";
+import { Button } from "react-bootstrap";
 function Search() {
   const [type, setType] = useState();
   const [page, setPage] = useState();
   const [content, setContent] = useState();
   const [numbOfPages, setNumbOfPages] = useState();
-  const [searchText, setSearchText] = useState("batman");
+  const [searchText, setSearchText] = useState("");
   const fetchSearch = async () => {
     const { data } = await axios.get(
-        `https://api.themoviedb.org/3/search/${type ? "tv" : "movie"}?api_key=${
-            process.env.REACT_APP_API_KEY
-          }&language=en-US&query=${searchText}&page=${page}&include_adult=false`
+      `https://api.themoviedb.org/3/search/${type ? "tv" : "movie"}?api_key=${
+        process.env.REACT_APP_API_KEY
+      }&language=en-US&query=${searchText}&page=${page}&include_adult=false`
     );
     setContent(data.results);
     setNumbOfPages(data.total_pages);
@@ -27,33 +28,39 @@ function Search() {
     <React.Fragment>
       <div className="container">
         <div className="row"></div>
+        <h2 className="text-center m-3 FuenteCinema">Buscar</h2>
         <div className="col-12 d-flex mx-auto text-center justify-content-center align-items-center">
           <TextField
-            className=" mx-auto text-center"
+            className=" mx-auto text-center align-content-center"
+            id="outlined-basic"
+            variant="outlined"
             style={{ flex: 1 }}
             label="Buscar.."
-            variant="filled"
             onChange={(e) => setSearchText(e.target.value)}
           />
-          <button onClick={fetchSearch} variant="contained " className="ml-2">
-            <SearchIcon />
-          </button>
+          <Button
+            variant="light"
+            onClick={fetchSearch}
+            className="ml-2 bg-white"
+          >
+            <SearchOutlinedIcon />
+          </Button>
         </div>
         <Tabs
+          className="my-4"
           value={type}
           indicatorColor="primary"
           textColor="primary"
-          onChange={(event, newValue) => {
+          onChange={(e, newValue) => {
             setType(newValue);
             setPage(1);
           }}
         >
-          <Tab style={{ width: "50%" }} label="Buscar Peliculas" />
-          <Tab style={{ width: "50%" }} label="Buscar Series" />
+            <Tab style={{ width: "50%" }} label="Buscar Peliculas" />
+            <Tab style={{ width: "50%" }} label="Buscar Series" />
         </Tabs>
-        <div>
-          <h2 className="text-center m-3">Buscar</h2>
 
+        <div>
           <div>
             <div className="row">
               {content &&
@@ -71,12 +78,20 @@ function Search() {
             </div>
           </div>
           {searchText &&
-            !content &&
-            (type ? <h2>No series Found</h2> : <h2>No movies found</h2>)}
-          {numbOfPages > 1 && (
-            <CustomPagination setPage={setPage} numbOfPages={numbOfPages} />
-          )}
+            content !== 1 &&
+            (type ? (
+              <div className="text-center">
+                <h2>No series Found</h2>
+              </div>
+            ) : (
+              <div className="text-center">
+                <h2>No Movies Found</h2>
+              </div>
+            ))}
         </div>
+        {numbOfPages > 1 && (
+          <CustomPagination setPage={setPage} numbOfPages={numbOfPages} />
+        )}
       </div>
     </React.Fragment>
   );

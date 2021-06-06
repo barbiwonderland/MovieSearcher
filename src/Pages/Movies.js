@@ -28,14 +28,14 @@ function Movies() {
   return (
     <React.Fragment>
       <div className="container text-center">
-        <h2 className="text-center m-3">Movies</h2>
+        <h2 className="text-center m-3 FuenteCinema">Movies</h2>
         <Genres
           type="movie"
           selectedGenres={selectedGenres}
+          setSelectedGenres={setSelectedGenres}
           genres={genres}
           setGenres={setGenres}
           setPage={setPage}
-          setSelectedGenres={setSelectedGenres}
         />
 
         <div>

@@ -5,10 +5,11 @@ import React, { useEffect } from "react";
 function Genres({
   type,
   selectedGenres,
+  setSelectedGenres,
   genres,
   setGenres,
   setPage,
-  setSelectedGenres,
+
 }) {
    const handleAdd = (genre) => {
      setSelectedGenres([...selectedGenres, genre]);
@@ -49,16 +50,16 @@ const handleRemove = (genre) => {
           color="primary"
           clickable
           size="small"
-          onDelete={() => handleRemove(genre)}
+          onDelete={() => handleRemove(genre) }
         />
       ))}
-          {genres && genres.map((genre) => (
+          {genres.map((genre) => (
               <Chip
                 label={genre.name}
                 key={genre.id}
                 className="m-1"
                 clickable
-                onclick={handleAdd(genre)}
+                onclick={()=>handleAdd(genre)}
               />
             ))}
         </div>

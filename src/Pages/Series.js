@@ -27,7 +27,7 @@ function Series() {
   return (
     <React.Fragment>
       <div className="container text-center">
-        <h2 className="text-center m-3">Series</h2>
+        <h2 className="text-center m-3 FuenteCinema">Series</h2>
         <Genres
           type="tv"
           selectedGenres={selectedGenres}

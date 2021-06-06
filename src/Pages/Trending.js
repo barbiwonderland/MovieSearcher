@@ -20,9 +20,9 @@ function Trending() {
   return (
     <div>
       <div className="container text-center">
-        <h2 className="text-center m-3">Trending</h2>
+        <h2 className="text-center m-3 FuenteCinema">Trending</h2>
 
-        <div>
+    
           <div className="row">
             {content &&
               content.map((x) => (
@@ -36,7 +36,7 @@ function Trending() {
                   vote_average={x.vote_average}
                 />
               ))}
-          </div>
+         
         </div>
       </div>
       <CustomPagination setPage={setPage} />
