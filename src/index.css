@@ -28,11 +28,15 @@ code {
   font-size: 3rem;
   font-weight: 100;
 }
-.makeStyles-paper-7 {
-  width:40vw!important;
-  height: auto;
-}
+
 .image{
-  width: 30vw;
+  max-width: 60vw!important;
+  width: auto;
   height: 30vh;
+  object-fit: cover;
+}
+
+.title > * {
+  font-size: 0.9rem;
+  font-weight: bold;
 }

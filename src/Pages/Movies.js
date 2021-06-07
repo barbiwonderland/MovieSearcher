@@ -4,6 +4,7 @@ import CustomPagination from "../components/customPagination";
 import Genres from "../components/Genres";
 import SingleContent from "../components/SingleContent";
 import useGenres from "../useGenre";
+import Modal2 from "./Modal2";
 
 function Movies() {
   const [genres, setGenres] = useState([]);
@@ -11,7 +12,7 @@ function Movies() {
   const [content, setContent] = useState([]);
   const [numbOfPages, setNumbOfPages] = useState();
   const [selectedGenres, setSelectedGenres] = useState([]);
-  const genreForUrls =useGenres(selectedGenres)
+  const genreForUrls = useGenres(selectedGenres);
 
   const fectchMovies = async () => {
     const { data } = await axios.get(
@@ -24,11 +25,12 @@ function Movies() {
   useEffect(() => {
     // console.log(selectedGenres,"hola");
     fectchMovies();
-  }, [page,genreForUrls]);
+  }, [page, genreForUrls]);
   return (
     <React.Fragment>
       <div className="container text-center">
         <h2 className="text-center m-3 FuenteCinema">Movies</h2>
+
         <Genres
           type="movie"
           selectedGenres={selectedGenres}

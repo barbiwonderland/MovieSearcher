@@ -7,18 +7,20 @@ import axios from "axios";
 import { img_500, unavailable, unavailableLandscape } from "../config";
 import { Button } from "@material-ui/core";
 import YoutubeIcon from "@material-ui/icons/YouTube";
-import Caroussel from "./caroussel";
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    fontSize: "0.8rem",
+    color: "#ccc5b9"
   },
   paper: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor:"#161a1d",
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    width: "80vw",
   },
 }));
 
@@ -77,32 +79,33 @@ export default function ContentModal({ children, media_type, id }) {
               <div className=" container text-center">
                 <div className="row">
                   <div className="col-md-12">
-                    <div
-           
-                    >
+                    <div>
                       <img
-                      className="image"
+                        className="image  img-thumbnail mb-1"
                         src={
                           content.backdrop_path
-                            ?  `https://image.tmdb.org/t/p/original/${content.backdrop_path}`
+                            ? `https://image.tmdb.org/t/p/original/${content.backdrop_path}`
                             : unavailableLandscape
                         }
                         alt={content.name || content.title}
                       />
                     </div>
-                    <div className="title">
-                      <h2>{content.name || content.title}</h2>
+                    <div className="title ">
+                      <div>{content.name || content.title}</div>
                     </div>
-                    <div className="date">
-                      {(
-                        content.first_air_date ||
-                        content.release_date ||
-                        "----"
-                      ).substring(0, 4)}
-                    </div>
-                    <div className="tagline">
+                    <div className="tagline mt-0 mb-1">
                       {content.tagline && <i>{content.tagline}</i>}
                     </div>
+                    <div className="date ">
+                      <i>
+                        {(
+                          content.first_air_date ||
+                          content.release_date ||
+                          "----"
+                        ).substring(0, 4)}
+                      </i>
+                    </div>
+
                     <div className="description">
                       <p>{content.overview}</p>
                     </div>
