@@ -23,7 +23,12 @@ function Search() {
   useEffect(() => {
     window.scroll(0, 0);
     fetchSearch();
+    console.log(searchText,"search")
+    console.log(content,"content")
   }, [type, page]);
+  const HandleChange = (event, newValue) => {
+    setType(newValue);
+    setPage(1);}
   return (
     <React.Fragment>
       <div className="container">
@@ -51,10 +56,7 @@ function Search() {
           value={type}
           indicatorColor="primary"
           textColor="primary"
-          onChange={(e, newValue) => {
-            setType(newValue);
-            setPage(1);
-          }}
+          onChange={HandleChange}
         >
             <Tab style={{ width: "50%" }} label="Buscar Peliculas" />
             <Tab style={{ width: "50%" }} label="Buscar Series" />
@@ -78,7 +80,7 @@ function Search() {
             </div>
           </div>
           {searchText &&
-            !content &&
+            (content !== undefined) &&
             (type ? (
               <div className="text-center">
                 <h2>No series Found</h2>

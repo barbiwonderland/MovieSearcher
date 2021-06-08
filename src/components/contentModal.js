@@ -13,14 +13,18 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
     fontSize: "0.8rem",
-    color: "#ccc5b9"
+    color: "#ccc5b9",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "0.5rem",
+    },
   },
   paper: {
-    backgroundColor:"#161a1d",
+    backgroundColor: "#161a1d",
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
     width: "80vw",
+    maxHeight: "80vh",
   },
 }));
 

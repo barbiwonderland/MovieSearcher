@@ -30,11 +30,12 @@ code {
 }
 
 .image{
-  max-width: 60vw!important;
+  max-width: 50vw!important;
   width: auto;
-  height: 30vh;
+  height: 20vh;
   object-fit: cover;
 }
+
 
 .title > * {
   font-size: 0.9rem;
