@@ -12,6 +12,7 @@ Api externa utilizada https://developers.themoviedb.org/3
 ### Enlace a la pagina Web:
 https://sharp-fermi-d0907b.netlify.app/
 
+![image](https://i.postimg.cc/nrr96Q3W/Whats-App-Image-2021-06-07-at-9-27-37-PM.jpg)
 ![image](https://i.postimg.cc/HxcCRYQ2/Captura.png)
 
 
