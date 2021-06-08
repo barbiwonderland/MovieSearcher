@@ -6,7 +6,7 @@ Permite buscar peliculas, series , el trending de la semana y ver los detalles d
 
 Utilice material UI y bootstrap.
 
-Api externa utilizada :https://developers.themoviedb.org/3
+Api externa utilizada https://developers.themoviedb.org/3
 
 
 ### Enlace a la pagina Web:

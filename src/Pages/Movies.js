@@ -50,7 +50,7 @@ function Movies() {
                   poster={x.poster_path}
                   title={x.title || x.name}
                   date={x.first_air_date || x.release_date}
-                  media_type="Movie"
+                  media_type="movie"
                   vote_average={x.vote_average}
                 />
               ))}
