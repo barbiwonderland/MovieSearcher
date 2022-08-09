@@ -4,7 +4,6 @@ import CustomPagination from "../components/customPagination";
 import Genres from "../components/Genres";
 import SingleContent from "../components/SingleContent";
 import useGenres from "../useGenre";
-import Modal2 from "./Modal2";
 
 function Movies() {
   const [genres, setGenres] = useState([]);
